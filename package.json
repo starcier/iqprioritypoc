@@ -1,0 +1,30 @@
+{
+  "name": "eq-demo",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore"
+  },
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@gridsome/source-airtable": "^0.2.0",
+    "airtable": "^0.10.1",
+    "axios": "^0.21.0",
+    "chart.js": "^2.9.4",
+    "chartjs": "^0.3.24",
+    "gridsome": "^0.7.0",
+    "highcharts": "^8.2.2",
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "vue-chartjs": "^3.5.1",
+    "vue-lodash": "^2.1.2",
+    "vue-moment": "^4.1.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.0"
+  }
+}
