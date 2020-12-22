@@ -320,7 +320,7 @@ h4{
     padding: 1em;
 }
 .name-claim {
-    margin-left: 1em;
+    margin-left: 1rem;
 }
 .wrap-columns {
     display: grid;
