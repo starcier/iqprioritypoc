@@ -215,7 +215,7 @@ import lodash from 'lodash'
 export default {
   
   metaInfo: {
-    title: 'Hello, world!'
+    title: 'IQPriority by EvolutionIQ'
   },
   components:{
     barChart
