@@ -112,7 +112,7 @@
     <div class="eq-table">
       <div class="container">
         <div class="bar-filter">
-          <div class="row">
+          <div class="row alert" @click="sort('alert')">
             <p>Alert</p>
           </div>
           <div class="row bar-id">
@@ -139,8 +139,8 @@
           <div class="row">
             <p class="alert" >{{edge.node.alert}}</p>
           </div>
-        <div class="row claim-id">{{edge.node.claimId}}</div>
-            <div class="row name"><button @click="$router.push(`/airdatas/${edge.node.id}`)" >{{edge.node.title}}</button></div>
+        <div class="row claim-id"><button @click="$router.push(`/airdatas/${edge.node.id}`)" >{{edge.node.claimId}}</button></div>
+            <div class="row name">{{edge.node.title}}</div>
         <div class="row adjuster" >{{edge.node.adjuster}}</div>
         <div class="row claim-date" >{{formatDate(edge.node.claimDate)}} days</div>
         <div class="row stage" 
@@ -735,14 +735,15 @@ p.low-green,p.medium-orange,p.high-red,p.ultra-red {
   margin-left: 8px;
   margin-top: -3px;
 }
-.row.bar-name button {
+.claim-id button {
     background: transparent;
     border: 0;
     font-weight: 600;
     text-transform: unset;
-    font-size: 12px;
+    font-size: 14px;
+    padding: 0;
 }
-.row.bar-name,.row.bar-adjuster,.row.bar-age,.row.bar-stage,.row.bar-severity,.row.bar-risk {
+.row.bar-name,.row.bar-adjuster,.row.bar-age,.row.bar-stage,.row.bar-severity,.row.bar-risk,.claim-id button,.row.alert {
     cursor: pointer;
 }
 /* Exam container */
