@@ -115,7 +115,7 @@
           <div class="row alert" @click="sort('alert')">
             <p>Alert</p>
           </div>
-          <div class="row bar-id">
+          <div class="row bar-id" @click="sort('id')">
             <p>Claim ID</p>
 
           </div>
@@ -743,7 +743,7 @@ p.low-green,p.medium-orange,p.high-red,p.ultra-red {
     font-size: 14px;
     padding: 0;
 }
-.row.bar-name,.row.bar-adjuster,.row.bar-age,.row.bar-stage,.row.bar-severity,.row.bar-risk,.claim-id button,.row.alert {
+.row.bar-name,.row.bar-adjuster,.row.bar-age,.row.bar-stage,.row.bar-severity,.row.bar-risk,.claim-id button,.row.alert,.bar-id {
     cursor: pointer;
 }
 /* Exam container */
