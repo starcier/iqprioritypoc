@@ -115,7 +115,7 @@
           <div class="row alert" @click="sort('alert')">
             <p>Alert</p>
           </div>
-          <div class="row bar-id" @click="sort('id')">
+          <div class="row bar-id" @click="sort('claimId')">
             <p>Claim ID</p>
 
           </div>
