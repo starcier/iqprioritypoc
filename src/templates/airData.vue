@@ -201,7 +201,7 @@
               </div>
               <div class="cost-content mg-bottom-2">
                 <p class="cost-txt">
-                  {{$page.airData.litigationCost_driver_1}}
+                  {{$page.airData.litigationCost_driver_2}}
                 </p>
                 <div class="sev-bar">
                   <div class="sev-bar-color orange orange-80"></div>
@@ -214,7 +214,7 @@
               </div>
               <div class="cost-content mg-bottom-2">
                 <p class="cost-txt">
-                  {{$page.airData.litigationCost_driver_1}}
+                  {{$page.airData.litigationCost_driver_3}}
                 </p>
                 <div class="sev-bar">
                   <div class="sev-bar-color orange orange-78"></div>
@@ -227,7 +227,7 @@
               </div>
               <div class="cost-content mg-bottom-2">
                 <p class="cost-txt">
-                  {{$page.airData.litigationCost_driver_1}}
+                  {{$page.airData.litigationCost_driver_4}}
                 </p>
                 <div class="sev-bar">
                   <div class="sev-bar-color orange orange-78"></div>
