@@ -159,7 +159,7 @@
         </p>
         <h4 class="h4-style" :class="{'lig-low' : ($page.airData.litigationRisk==litLow) ,'lig-medium' : ($page.airData.litigationRisk==litMedium),'lig-high' : ($page.airData.litigationRisk==litHigh)}"> Litigation Risk</h4>
           <div class="cost-percent-wrap">
-            <span class="percent">63% Attorney Likelihood in next 60 days</span>
+            <span class="percent">{{$page.airData.litigationDescription}}</span>
           </div>
           <div class="tab-lit">
             <ul>
@@ -169,19 +169,19 @@
             </ul>
           </div>
           <div class="bar-perc-wrap">
-            <img v-if="litLow===$page.airData.litigationRisk" src="../images/unlitiget.svg" />
-            <img v-if="litMedium===$page.airData.litigationRisk" src="../images/attorney-involved.svg" />
-            <img v-if="litHigh===$page.airData.litigationRisk" src="../images/suid-filled.svg" />
+            <img v-if="litLow===$page.airData.litigationStage" src="../images/unlitiget.svg" />
+            <img v-if="litMedium===$page.airData.litigationStage" src="../images/attorney-involved.svg" />
+            <img v-if="litHigh===$page.airData.litigationStage" src="../images/suid-filled.svg" />
           </div>
           <div class="claim-value-wrap">
             <ul>
-              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationRisk==litLow)}">Unlitigated</p> <span>$17,400 Claim Value</span></li>
-              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationRisk==litMedium)}">Attorney Involved</p> <span>$32,000 Claim Value</span></li>
-              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationRisk==litHigh)}">Suit Filled</p> <span>$47,000 Claim Value</span></li>
+              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>$17,400 Claim Value</span></li>
+              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>$32,000 Claim Value</span></li>
+              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>$47,000 Claim Value</span></li>
             </ul>
           </div>
               <div class="cost-drivers-wrap">
-            <h5 class="cost-heading">Cost Drivers</h5>
+            <h5 class="cost-heading">Litigation Drivers</h5>
             <div class="cost-driver">
               <div class="cost-num">
                 <span>1</span>
@@ -263,6 +263,8 @@ query($id: ID!){
     dateOfLoss
     subject
     projectedCost
+    litigationStage
+    litigationDescription
     projectedCost_driver_1
     projectedCost_driver_2
     projectedCost_driver_3

@@ -37,6 +37,8 @@ module.exports = function(api) {
         source: air.fields.source,
         subject: air.fields.subject,
         projectedCost: air.fields.projected_cost,
+        litigationStage: air.fields.litigation_stage,
+        litigationDescription: air.fields.litigation_description,
         projectedCost_driver_1: air.fields.projected_costs_cost_drivers_1,
         projectedCost_driver_2: air.fields.projected_costs_cost_drivers_2,
         projectedCost_driver_3: air.fields.projected_costs_cost_drivers_3,
