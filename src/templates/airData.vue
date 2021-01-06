@@ -34,7 +34,7 @@
       </div>
       <div class="claim-since-loss">
         <span class="grey-span">Days Since Loss</span>
-        <h4>{{formatDate($page.airData.dateOfLoss)}}</h4>
+        <h4>{{formatDate($page.airData.claimDate)}}</h4>
       </div>
       </div>
       <div class="claim-context-wrap white-container-radius">
@@ -61,7 +61,7 @@
       </div>
       <div class="corr-date">
         <span class="grey-span">Date</span>
-       <p>May 14, 2020</p>
+       <p>{{monthsFirst($page.airData.dateOfCommun)}}</p>
       </div>
       <div class="corr-subject">
         <span class="grey-span">Subject</span>
@@ -175,9 +175,9 @@
           </div>
           <div class="claim-value-wrap">
             <ul>
-              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>$17,400 Claim Value</span></li>
-              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>$32,000 Claim Value</span></li>
-              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>$47,000 Claim Value</span></li>
+              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>{{$page.airData.litUnlitigatedVal}}</span></li>
+              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>{{$page.airData.litAttorneyVal}}</span></li>
+              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>{{$page.airData.litSuitVal}}</span></li>
             </ul>
           </div>
               <div class="cost-drivers-wrap">
@@ -257,6 +257,7 @@ query($id: ID!){
     severity
     litigationRisk
     claimDate
+    dateOfCommun
     lossDescription
     injuryDescription
     source
@@ -264,6 +265,9 @@ query($id: ID!){
     subject
     projectedCost
     litigationStage
+    litUnlitigatedVal
+    litAttorneyVal
+    litSuitVal
     litigationDescription
     projectedCost_driver_1
     projectedCost_driver_2
@@ -289,23 +293,23 @@ export default {
     },
     data(){
     return{
-    isLow:"1",
-    isMedium:"2",
-    isHigh:"3",
-    litLow:"1",
-    litMedium:"2",
-    litHigh:"3"
+      isLow:"1",
+      isMedium:"2",
+      isHigh:"3",
+      litLow:"1",
+      litMedium:"2",
+      litHigh:"3"
     }
 
   },
      methods:{
 
-       formatDate(date){
-        let dateNow = moment()
-        return dateNow.diff(date, 'days');
+    formatDate(date){
+      let dateNow = moment()
+      return dateNow.diff(date, 'days');
     },
     monthsFirst(date){
-      return moment(date).format('MMMM do YYYY')
+      return moment(date).format('MMMM Do YYYY')
 
     }
 

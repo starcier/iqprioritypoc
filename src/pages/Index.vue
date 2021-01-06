@@ -155,10 +155,10 @@
         
         </div>
         <div class="row severity">  
-          <p class="low" v-if="isLow===edge.node.severity"> Low Severity, $1k - $3k</p>
-          <p class="medium" v-if="isMedium===edge.node.severity">Medium Severity, $20k - $35k</p>
-          <p class="hight" v-if="isHigh===edge.node.severity">High Severity, $45k - $89k</p>
-          <p class="ult-hight" v-if="isUltra===edge.node.severity">Ultra - High Severity, $35k - $100k</p>
+          <p class="low" v-if="isLow===edge.node.severity"> Low Severity</p>
+          <p class="medium" v-if="isMedium===edge.node.severity">Medium Severity</p>
+          <p class="hight" v-if="isHigh===edge.node.severity">High Severity</p>
+          <p class="ult-hight" v-if="isUltra===edge.node.severity">Ultra - High Severity</p>
        
           
           
@@ -193,6 +193,7 @@ query{
         severity
         adjuster
         claimDate
+        dateOfLoss
         litigationRisk
         
       }
