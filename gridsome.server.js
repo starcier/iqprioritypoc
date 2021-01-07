@@ -32,7 +32,6 @@ module.exports = function(api) {
         dateOfCommun: air.fields.date,
         claimDate: air.fields.claim_age,
         litigationRisk: air.fields.litigation_risk,
-        dateOfLoss: air.fields.date_of_loss,
         lossDescription: air.fields.loss_description,
         injuryDescription: air.fields.injury_description,
         source: air.fields.source,

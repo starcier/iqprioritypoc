@@ -193,7 +193,7 @@ query{
         severity
         adjuster
         claimDate
-        dateOfLoss
+     
         litigationRisk
         
       }

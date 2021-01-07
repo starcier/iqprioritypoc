@@ -30,7 +30,7 @@
       <div class="claim-loss-wrap">
       <div class="claim-loss-date">
         <p>Date of Loss</p>
-        <h4>{{monthsFirst($page.airData.dateOfLoss)}}</h4>
+        <h4>{{monthsFirst($page.airData.claimDate)}}</h4>
       </div>
       <div class="claim-since-loss">
         <span class="grey-span">Days Since Loss</span>
@@ -261,7 +261,6 @@ query($id: ID!){
     lossDescription
     injuryDescription
     source
-    dateOfLoss
     subject
     projectedCost
     litigationStage
