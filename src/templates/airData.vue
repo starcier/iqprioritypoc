@@ -76,7 +76,7 @@
           Projected Costs
         </p>
         <div class="cost-wrap">
-          <h4 class="h4-style">{{$page.airData.projectedCost}}</h4>
+          <h4 class="h4-style">${{localNum($page.airData.minCost)}} - ${{localNum($page.airData.maxCost)}}</h4>
           <div class="cost-percent-wrap">
             <span class="percent">25 percentile</span>
             <span class="percent">75 percentile</span>
@@ -87,7 +87,7 @@
             <img v-if="isHigh===$page.airData.severity" src="../images/high-sev.svg" />
           </div>
           <div class="pers-wrap-after">
-            <h4 >{{$page.airData.projectedCost}}</h4>
+            <h4 >${{localNum($page.airData.minCost)}} - ${{localNum($page.airData.maxCost)}}</h4>
           <div class="cost-percent-wrap">
             <span class="percent">25 percentile</span>
             <span class="percent">75 percentile</span>
@@ -175,22 +175,23 @@
           </div>
           <div class="claim-value-wrap">
             <ul v-if="$page.airData.litigationStage==litLow">
-              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>${{Math.round(calAvgCost()/2)}},000 Claim Value</span></li>
-              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>${{(Math.round(calAvgCost()/2)*3)}},000 Claim Value</span></li>
-              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>${{Math.round((calAvgCost()/2)*3*3)}},000 Claim Value</span></li>
+              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>${{localNum(Math.round(calAvgCost()/2))}} Claim Value</span></li>
+              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>${{localNum((Math.round(calAvgCost()/2)*3))}} Claim Value</span></li>
+              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>${{localNum(Math.round((calAvgCost()/2)*3*3))}} Claim Value</span></li>
             </ul>
                <ul v-if="$page.airData.litigationStage==litMedium">
-              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>${{
-                Math.round(calAvgCost()*0.333)}},000 Claim Value</span></li>
-              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>${{(Math.round(calAvgCost()/2))}},000 Claim Value</span></li>
-              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>${{Math.round((calAvgCost()/2)*3)}},000 Claim Value</span></li>
+              <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>${{localNum(
+                Math.round(calAvgCost()*0.333))}} Claim Value</span></li>
+              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>${{localNum((Math.round(calAvgCost()/2)))}} Claim Value</span></li>
+              <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>${{localNum(Math.round((calAvgCost()/2)*3))}} Claim Value</span></li>
             </ul>
             <ul v-if="$page.airData.litigationStage==litHigh">
               <li><p class="low-unlt" :class="{'lig-low-txt' : ($page.airData.litigationStage==litLow)}">Unlitigated</p> <span>${{
-                Math.round((calAvgCost()*0.3)*0.3)}},000 Claim Value</span></li>
-              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>${{(Math.round(calAvgCost()*0.333))}},000 Claim Value</span></li>
+                localNum(Math.round((calAvgCost()*0.3)*0.3))}} Claim Value</span></li>
+              <li><p class="attor-inv" :class="{'lig-medium-txt' : ($page.airData.litigationStage==litMedium)}">Attorney Involved</p> <span>
+                ${{localNum((Math.round(calAvgCost()*0.333)))}} Claim Value</span></li>
               <li><p class="suit-fill" :class="{'lig-high-txt' : ($page.airData.litigationStage==litHigh)}">Suit Filled</p> <span>
-                ${{Math.round((calAvgCost()/2))}},000 Claim Value</span></li>
+                ${{localNum(Math.round((calAvgCost()/2)))}} Claim Value</span></li>
             </ul>
           </div>
               <div class="cost-drivers-wrap">
@@ -275,11 +276,9 @@ query($id: ID!){
     injuryDescription
     source
     subject
-    projectedCost
     litigationStage
-    litUnlitigatedVal
-    litAttorneyVal
-    litSuitVal
+    minCost
+    maxCost
     litigationDescription
     projectedCost_driver_1
     projectedCost_driver_2
@@ -327,16 +326,14 @@ export default {
       return moment(date).format('MMMM Do YYYY')
 
     },
+    localNum(num){
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    },
     calAvgCost(){
-      let splitCost = this.$page.airData.projectedCost.split('k').join(" ").split('$').join("").split(" - ");
-      let splitNum = splitCost.map(function(num){
-        return parseInt(num,10)
-      });
-        let avg = splitNum.reduce(function(a,b){
-          return (a+b)
-        })
-        return avg
-      
+      const minCost= Number(this.$page.airData.minCost);
+      const maxCost= Number(this.$page.airData.maxCost);
+      const amount= minCost + maxCost;
+          return amount
     }
 
 
@@ -500,7 +497,7 @@ span.percent {
     display: flex;
 }
 .pers-wrap-after h4 {
-    margin-left: -30px;
+    margin-left: 0px;
 }
 .pers-wrap-after .percent:first-of-type {
     margin-left: 45px;
